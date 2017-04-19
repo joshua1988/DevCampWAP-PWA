@@ -1,0 +1,26 @@
+{
+  "name": "dev-camp-pwa",
+  "version": "1.0.0",
+  "description": "simple pwa with firebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshua1988/DevCampWAP-PWA.git"
+  },
+  "keywords": [
+    "pwa",
+    "progressive",
+    "web",
+    "app",
+    "firebase"
+  ],
+  "author": "captain_pangyo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshua1988/DevCampWAP-PWA/issues"
+  },
+  "homepage": "https://github.com/joshua1988/DevCampWAP-PWA#readme"
+}
