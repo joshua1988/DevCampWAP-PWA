@@ -8,27 +8,15 @@
     <title>Full Package App</title>
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <a class="waves-effect waves-light btn" id="loginG">Google</a>
-          <a class="waves-effect waves-light btn" id="loginF">Facebook</a>
-        </div>
-      </div>
+    <div class="container" id="app">
+      <router-link to="/main">Go to Main</router-link>
+      <router-view></router-view>
     </div>
 
     <script src="js/vendor/jquery-3.2.1.min.js"></script>
     <script src="js/vendor/materialize.min.js"></script>
+    <script src="js/vendor/vue.min.js"></script>
+    <script src="js/vendor/vue-router.js"></script>
     <!-- Add Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
     <script>
@@ -42,28 +30,7 @@
       };
       var defaultApp = firebase.initializeApp(config);
     </script>
-    <script src="js/app.js"></script>
-    <!-- <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('data', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script> -->
+    <script src="js/route.js"></script>
+    <!-- <script src="js/app.js"></script> -->
   </body>
 </html>
