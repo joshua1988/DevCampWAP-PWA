@@ -1,3 +1,7 @@
+## Possible Scenarios
+- News Feed (Facebook or sth)
+- Weather Forecast (finedusts alerting system)
+
 ## The next big thing
 - For those who are interested in the cutting edge technology
 
@@ -25,5 +29,3 @@ firebase init
 // launch the firebase server
 firebase serve
 ```
-
-## d
