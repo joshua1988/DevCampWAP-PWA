@@ -1,18 +1,20 @@
 var provider = new firebase.auth.GoogleAuthProvider();
 
 var Login = { template:
-  `<div class="row">
-    <div class="input-field col s12">
-      <input id="email" type="email" class="validate">
-      <label for="email">Email</label>
-    </div>
-    <div class="input-field col s12">
-      <input id="password" type="password" class="validate">
-      <label for="password">Password</label>
-    </div>
-    <div class="col s12">
-      <a class="waves-effect waves-light btn" v-on:click="loginWithGoogle">Google</a>
-      <a class="waves-effect waves-light btn" id="loginF">Facebook</a>
+  `<div class="container">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate">
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="password" type="password" class="validate">
+        <label for="password">Password</label>
+      </div>
+      <div class="col s12">
+        <a class="waves-effect waves-light btn" v-on:click="loginWithGoogle">Google</a>
+        <a class="waves-effect waves-light btn" id="loginF">Facebook</a>
+      </div>
     </div>
   </div>`,
   methods: {
@@ -38,9 +40,11 @@ var Login = { template:
        // ...
       });
     }
-  }};
+  }
+};
 
 var Main = { template: `
+  <header-navbar></header-navbar>
   <div class="row">
     <div class="col s12 m6">
       <div class="card">
@@ -58,7 +62,8 @@ var Main = { template: `
   </div>`,
   methods: {
 
-  }};
+  }
+};
 
 var routes = [
   { path: '/', component: Login },
@@ -72,3 +77,24 @@ var router = new VueRouter({
 var app = new Vue({
   router
 }).$mount('#app')
+
+Vue.component('header-navbar', {
+  template: `<nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+    </div>
+  </nav>`
+})
