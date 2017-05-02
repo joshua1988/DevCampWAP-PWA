@@ -72,29 +72,34 @@ var Main = {
       </md-toolbar>
     </md-sidenav>
 
-    <md-card>
-      <md-card-media>
-        <img src="assets/card-image-2.jpg" alt="People">
-      </md-card-media>
+    <section>
+      <md-card v-for="item in items" style="margin:15px;">
+        <md-card-media>
+          <!-- <img src="assets/card-image-2.jpg" alt="People"> -->
+        </md-card-media>
 
-      <md-card-content>
-        content
-        {{items}}
-      </md-card-content>
-    </md-card>
+        <md-card-content>
+          {{item}}
+        </md-card-content>
+      </md-card>
+    </section>
   </div>
   `,
   methods: {
+    filterData: function (items) {
+      return items.reducd(function (item) {
+        console.log(item);
+        return item.row;
+      });
+    },
     toggleLeftSidenav(event) {
       event.preventDefault();
       return this.$refs.leftSidenav.toggle();
     },
     signOut: function (event) {
       return firebase.auth().signOut().then(function() {
-        // Sign-out successful.
         router.push({ path: '/' })
       }, function(error) {
-        // An error happened.
         console.log(error);
       });
     },
@@ -103,15 +108,14 @@ var Main = {
       $.ajax({
         url : "http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/xml/RealtimeCityAir/1/5/",
         success: function (result) {
-          var result = xmlToJson(result);
-          // console.log(result);
-          if (result.RealtimeCityAir.RESULT.CODE == "INFO-000") {
+          var parsedResult = xmlToJson(result);
+          if (parsedResult.RealtimeCityAir.RESULT.CODE == "INFO-000") {
             console.log("the data was well received");
-            self.items = result;
+            self.items = parsedResult.RealtimeCityAir.row;
           }
         },
         error: function (error) {
-          console.log("Failed at calling OPEN API");
+          console.log("Failed at calling OPEN API", error);
         }
       });
     }
@@ -123,6 +127,10 @@ var Main = {
   },
   created: function () {
     this.fetchData();
+  },
+  watch: {
+    // call again the method if the route changes
+    '$route': 'fetchData'
   }
 };
 
