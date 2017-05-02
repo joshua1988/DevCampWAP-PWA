@@ -78,7 +78,8 @@ var Main = {
       </md-card-media>
 
       <md-card-content>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea nostrum.
+        content
+        {{items}}
       </md-card-content>
     </md-card>
   </div>
@@ -96,20 +97,32 @@ var Main = {
         // An error happened.
         console.log(error);
       });
+    },
+    fetchData: function () {
+      var self = this;
+      $.ajax({
+        url : "http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/xml/RealtimeCityAir/1/5/",
+        success: function (result) {
+          var result = xmlToJson(result);
+          // console.log(result);
+          if (result.RealtimeCityAir.RESULT.CODE == "INFO-000") {
+            console.log("the data was well received");
+            self.items = result;
+          }
+        },
+        error: function (error) {
+          console.log("Failed at calling OPEN API");
+        }
+      });
+    }
+  },
+  data: function () {
+    return {
+      items: null
     }
   },
   created: function () {
-    // `this` points to the vm instance
-    $.ajax({
-      url : "http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/xml/RealtimeCityAir/1/5/",
-      success: function (result) {
-        // var parsedResult = parser.toJson(result);
-        // console.log(parsedResult);
-        var result = xmlToJson(result);
-        console.log(result);
-      }
-    });
-    console.log("Main compoment was created");
+    this.fetchData();
   }
 };
 
