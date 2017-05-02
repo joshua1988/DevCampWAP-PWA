@@ -2,8 +2,9 @@ Vue.use(VueMaterial);
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
-var Login = { template:
-  `<div class="main-content">
+var Login = {
+  template: `
+  <div class="main-content">
     <form novalidate @submit.stop.prevent="submit">
       <md-input-container>
         <md-icon>email</md-icon>
@@ -28,7 +29,7 @@ var Login = { template:
        var user = result.user;
 
        console.log(result);
-       router.push({ path : 'main'});
+       router.push({ path : '/main'});
       }).catch(function(error) {
        // Handle Errors here.
        var errorCode = error.code;
@@ -45,15 +46,24 @@ var Login = { template:
   }
 };
 
-var Main = { template: `
+var Main = {
+  template: `
   <div class="phone-viewport">
     <md-toolbar>
       <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>
       <h2 class="md-title">PWA</h2>
-    </md-toolbar>
 
+      <span style="flex: 1"></span>
+
+      <md-button class="md-icon-button">
+        <md-icon>refresh</md-icon>
+      </md-button>
+      <md-button class="md-icon-button" v-on:click.native="signOut">
+        <md-icon>exit_to_app</md-icon>
+      </md-button>
+    </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav">
       <md-toolbar>
         <div class="md-toolbar-container">
@@ -61,13 +71,45 @@ var Main = { template: `
         </div>
       </md-toolbar>
     </md-sidenav>
+
+    <md-card>
+      <md-card-media>
+        <img src="assets/card-image-2.jpg" alt="People">
+      </md-card-media>
+
+      <md-card-content>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea nostrum.
+      </md-card-content>
+    </md-card>
   </div>
   `,
   methods: {
     toggleLeftSidenav(event) {
       event.preventDefault();
-      this.$refs.leftSidenav.toggle();
+      return this.$refs.leftSidenav.toggle();
     },
+    signOut: function (event) {
+      return firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        router.push({ path: '/' })
+      }, function(error) {
+        // An error happened.
+        console.log(error);
+      });
+    }
+  },
+  created: function () {
+    // `this` points to the vm instance
+    $.ajax({
+      url : "http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/xml/RealtimeCityAir/1/5/",
+      success: function (result) {
+        // var parsedResult = parser.toJson(result);
+        // console.log(parsedResult);
+        var result = xmlToJson(result);
+        console.log(result);
+      }
+    });
+    console.log("Main compoment was created");
   }
 };
 

@@ -3,92 +3,24 @@
 [debug] CLI Version:  3.6.1
 [debug] Platform:     darwin
 [debug] Node Version: v6.10.1
-[debug] Time:         Mon May 01 2017 15:08:08 GMT+0900 (KST)
-[debug] ----------------------------------------------------------------------
-[debug] 
-[debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/OesI5yxX5zVihhNm5Eq8Leo7NElsrC_9so4gDsiYdZ0',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Mon May 01 2017 15:08:08 GMT+0900 (KST)
-[debug] <<< HTTP RESPONSE 200
-[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/friendlychat-34059  
- Mon May 01 2017 15:08:08 GMT+0900 (KST)
-[debug] <<< HTTP RESPONSE 200
-[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/friendlychat-34059/tokens  
- Mon May 01 2017 15:08:09 GMT+0900 (KST)
-[debug] <<< HTTP RESPONSE 500
-[debug] <<< HTTP RESPONSE BODY
-[error] 
-[error] Error: HTTP Error: 500, An unknown error occurred. Please contact support.
-[debug] Error Context: {
-  "body": {
-    "error": {
-      "code": "UNKNOWN_ERROR",
-      "message": "An unknown error occurred. Please contact support."
-    }
-  },
-  "response": {
-    "statusCode": 500,
-    "body": {
-      "error": {
-        "code": "UNKNOWN_ERROR",
-        "message": "An unknown error occurred. Please contact support."
-      }
-    },
-    "headers": {
-      "server": "nginx",
-      "date": "Mon, 01 May 2017 06:08:10 GMT",
-      "content-type": "application/json; charset=utf-8",
-      "content-length": "97",
-      "connection": "close",
-      "x-content-type-options": "nosniff"
-    },
-    "request": {
-      "uri": {
-        "protocol": "https:",
-        "slashes": true,
-        "auth": null,
-        "host": "admin.firebase.com",
-        "port": 443,
-        "hostname": "admin.firebase.com",
-        "hash": null,
-        "search": null,
-        "query": null,
-        "pathname": "/v1/database/friendlychat-34059/tokens",
-        "path": "/v1/database/friendlychat-34059/tokens",
-        "href": "https://admin.firebase.com/v1/database/friendlychat-34059/tokens"
-      },
-      "method": "GET"
-    }
-  }
-}
-[debug] ----------------------------------------------------------------------
-[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] CLI Version:  3.6.1
-[debug] Platform:     darwin
-[debug] Node Version: v6.10.1
-[debug] Time:         Mon May 01 2017 15:08:22 GMT+0900 (KST)
+[debug] Time:         Tue May 02 2017 15:15:13 GMT+0900 (KST)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
 [debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/friendlychat-34059  
- Mon May 01 2017 15:08:22 GMT+0900 (KST)
+ Tue May 02 2017 15:15:13 GMT+0900 (KST)
 [debug] <<< HTTP RESPONSE 200
 [debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/friendlychat-34059/tokens  
- Mon May 01 2017 15:08:24 GMT+0900 (KST)
+ Tue May 02 2017 15:15:14 GMT+0900 (KST)
 [debug] <<< HTTP RESPONSE 200
 [info] Starting Firebase development server...
 [info] 
 [info] Project Directory: /Users/gihyojoshuajang/Documents/Programming/DevCampWAP-PWA
 [debug] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/friendlychat-34059  
- Mon May 01 2017 15:08:25 GMT+0900 (KST)
+ Tue May 02 2017 15:15:15 GMT+0900 (KST)
 [debug] <<< HTTP RESPONSE 200
 [debug] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/800635767370/clients/_:getWebAppConfig  
- Mon May 01 2017 15:08:26 GMT+0900 (KST)
+ Tue May 02 2017 15:15:16 GMT+0900 (KST)
 [debug] <<< HTTP RESPONSE 200
 [info] Public Directory: public
 [info] 
