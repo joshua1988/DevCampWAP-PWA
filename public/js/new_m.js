@@ -29,7 +29,7 @@ var Login = {
        var user = result.user;
 
        console.log(result);
-       router.push({ path : '/main'});
+       router.push({ path : '/list'});
       }).catch(function(error) {
        // Handle Errors here.
        var errorCode = error.code;
@@ -47,6 +47,13 @@ var Login = {
 };
 
 var Main = {
+  template: `
+  
+  `,
+
+};
+
+var List = {
   template: `
   <div class="phone-viewport">
     <md-toolbar>
@@ -136,6 +143,7 @@ var Main = {
 
 var routes = [
   { path: '/', component: Login },
+  { path: '/list', component: List },
   { path: '/main', component: Main }
 ];
 
