@@ -106,14 +106,14 @@ var List = {
     </section>
 
     <md-snackbar :md-position="vertical + ' ' + horizontal" ref="snackbar" :md-duration="duration">
-      <span>Refresh the weather data</span>
+      <span>{{snackbar_msg}}</span>
       <md-button class="md-accent" md-theme="light-blue" @click.native="$refs.snackbar.close()">Close</md-button>
     </md-snackbar>
   </div>
   `,
   methods: {
     filterData: function (items) {
-      return items.reducd(function (item) {
+      return items.reduce(function (item) {
         console.log(item);
         return item.row;
       });
@@ -129,12 +129,13 @@ var List = {
         console.log(error);
       });
     },
-    refreshData: function (event) {
-      this.$refs.snackbar.open();
+    refreshData: function () {
+      this.snackbar_msg = "Refreshed the data.";
+      return this.$refs.snackbar.open();
     },
     fetchData: function () {
       var self = this;
-      $.ajax({
+      return $.ajax({
         url : "http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/xml/RealtimeCityAir/1/5/",
         success: function (result) {
           var parsedResult = xmlToJson(result);
@@ -154,7 +155,8 @@ var List = {
       items: null,
       vertical: 'bottom',
       horizontal: 'center',
-      duration: 3000
+      duration: 3000,
+      snackbar_msg: ""
     }
   },
   created: function () {
