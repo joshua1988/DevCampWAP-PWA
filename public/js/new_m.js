@@ -48,7 +48,7 @@ var Login = {
 
 var Main = {
   template: `
-  
+
   `,
 
 };
@@ -64,7 +64,7 @@ var List = {
 
       <span style="flex: 1"></span>
 
-      <md-button class="md-icon-button">
+      <md-button class="md-icon-button" v-on:click.native="refreshData">
         <md-icon>refresh</md-icon>
       </md-button>
       <md-button class="md-icon-button" v-on:click.native="signOut">
@@ -90,6 +90,11 @@ var List = {
         </md-card-content>
       </md-card>
     </section>
+
+    <md-snackbar :md-position="vertical + ' ' + horizontal" ref="snackbar" :md-duration="duration">
+      <span>Refresh the weather data</span>
+      <md-button class="md-accent" md-theme="light-blue" @click.native="$refs.snackbar.close()">Close</md-button>
+    </md-snackbar>
   </div>
   `,
   methods: {
@@ -110,6 +115,9 @@ var List = {
         console.log(error);
       });
     },
+    refreshData: function (event) {
+      this.$refs.snackbar.open();
+    },
     fetchData: function () {
       var self = this;
       $.ajax({
@@ -129,7 +137,10 @@ var List = {
   },
   data: function () {
     return {
-      items: null
+      items: null,
+      vertical: 'bottom',
+      horizontal: 'center',
+      duration: 3000
     }
   },
   created: function () {
