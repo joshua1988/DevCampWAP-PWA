@@ -77,6 +77,20 @@ var List = {
           <h3 class="md-title">Sidenav content</h3>
         </div>
       </md-toolbar>
+      <md-list>
+        <!-- <md-list-item>Plain Text</md-list-item>
+        <md-list-item target="_blank" href="https://google.com">Link</md-list-item>
+        <md-list-item @click.native="openAlert">Button</md-list-item> -->
+        <md-list-item>
+          <router-link to="/main">Main</router-link>
+        </md-list-item>
+        <md-list-item>
+          <router-link to="/list">List</router-link>
+        </md-list-item>
+        <md-list-item>
+          <router-link to="/">To Login</router-link>
+        </md-list-item>
+      </md-list>
     </md-sidenav>
 
     <section>
