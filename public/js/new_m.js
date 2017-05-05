@@ -53,46 +53,64 @@ var Main = {
 
 };
 
+var headerSideNav = {
+  template: `
+  <md-toolbar>
+    <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
+      <md-icon>menu</md-icon>
+    </md-button>
+    <h2 class="md-title">PWA</h2>
+
+    <span style="flex: 1"></span>
+
+    <md-button class="md-icon-button" v-on:click.native="refreshData">
+      <md-icon>refresh</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" v-on:click.native="signOut">
+      <md-icon>exit_to_app</md-icon>
+    </md-button>
+  </md-toolbar>
+
+  <md-sidenav class="md-left" ref="leftSidenav">
+    <md-toolbar>
+      <div class="md-toolbar-container">
+        <h3 class="md-title">Sidenav content</h3>
+      </div>
+    </md-toolbar>
+    <md-list>
+      <!-- <md-list-item>Plain Text</md-list-item>
+      <md-list-item target="_blank" href="https://google.com">Link</md-list-item>
+      <md-list-item @click.native="openAlert">Button</md-list-item> -->
+      <md-list-item>
+        <router-link to="/main">Main</router-link>
+      </md-list-item>
+      <md-list-item>
+        <router-link to="/list">List</router-link>
+      </md-list-item>
+      <md-list-item>
+        <router-link to="/">To Login</router-link>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+  `,
+  methods: {
+    signOut: function (event) {
+      return firebase.auth().signOut().then(function() {
+        router.push({ path: '/' })
+      }, function(error) {
+        console.log(error);
+      });
+    },
+    toggleLeftSidenav(event) {
+      event.preventDefault();
+      return this.$refs.leftSidenav.toggle();
+    },
+  }
+};
+
 var List = {
   template: `
   <div class="phone-viewport">
-    <md-toolbar>
-      <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
-        <md-icon>menu</md-icon>
-      </md-button>
-      <h2 class="md-title">PWA</h2>
-
-      <span style="flex: 1"></span>
-
-      <md-button class="md-icon-button" v-on:click.native="refreshData">
-        <md-icon>refresh</md-icon>
-      </md-button>
-      <md-button class="md-icon-button" v-on:click.native="signOut">
-        <md-icon>exit_to_app</md-icon>
-      </md-button>
-    </md-toolbar>
-    <md-sidenav class="md-left" ref="leftSidenav">
-      <md-toolbar>
-        <div class="md-toolbar-container">
-          <h3 class="md-title">Sidenav content</h3>
-        </div>
-      </md-toolbar>
-      <md-list>
-        <!-- <md-list-item>Plain Text</md-list-item>
-        <md-list-item target="_blank" href="https://google.com">Link</md-list-item>
-        <md-list-item @click.native="openAlert">Button</md-list-item> -->
-        <md-list-item>
-          <router-link to="/main">Main</router-link>
-        </md-list-item>
-        <md-list-item>
-          <router-link to="/list">List</router-link>
-        </md-list-item>
-        <md-list-item>
-          <router-link to="/">To Login</router-link>
-        </md-list-item>
-      </md-list>
-    </md-sidenav>
-
     <section>
       <md-card v-for="item in items" style="margin:15px;">
         <md-card-media>
@@ -112,21 +130,15 @@ var List = {
   </div>
   `,
   methods: {
+    // toggleLeftSidenav(event) {
+    //   event.preventDefault();
+    //   console.log(this);
+    //   return this.$refs.leftSidenav.toggle();
+    // },
     filterData: function (items) {
       return items.reduce(function (item) {
         console.log(item);
         return item.row;
-      });
-    },
-    toggleLeftSidenav(event) {
-      event.preventDefault();
-      return this.$refs.leftSidenav.toggle();
-    },
-    signOut: function (event) {
-      return firebase.auth().signOut().then(function() {
-        router.push({ path: '/' })
-      }, function(error) {
-        console.log(error);
       });
     },
     refreshData: function () {
@@ -135,6 +147,7 @@ var List = {
     },
     fetchData: function () {
       var self = this;
+      console.log(this);
       return $.ajax({
         url : "http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/xml/RealtimeCityAir/1/5/",
         success: function (result) {
@@ -170,12 +183,32 @@ var List = {
 
 var routes = [
   { path: '/', component: Login },
-  { path: '/list', component: List },
+  {
+    path: '/list',
+    // @@ Named Views
+    components: {
+      default : List,
+      headerSideNav : headerSideNav
+      // sideNavBar : sideNavBar
+    },
+    props: {
+      default: { name: 'List' },
+      headerSideNav: { name: 'headerSideNav' }
+    }
+    // @@ Nested Views
+    // components: List,
+    // children: [
+    //   {
+    //     path: '',
+    //     component: headerSideNav
+    //   }
+    // ]
+  },
   { path: '/main', component: Main }
 ];
 
 var router = new VueRouter({
-  routes // short for routes: routes
+  routes, // short for routes: routes,
 });
 
 var app = new Vue({
