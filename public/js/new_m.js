@@ -189,12 +189,7 @@ var routes = [
     components: {
       default : List,
       headerSideNav : headerSideNav
-      // sideNavBar : sideNavBar
     },
-    props: {
-      default: { name: 'List' },
-      headerSideNav: { name: 'headerSideNav' }
-    }
     // @@ Nested Views
     // components: List,
     // children: [
