@@ -186,13 +186,13 @@ var routes = [
   {
     path: '/list',
     // @@ Named Views
-    // components: {
+    // component: {
     //   default : List,
     //   headerSideNav : headerSideNav
     // },
 
     // @@ Nested Views
-    components: List,
+    component: List,
     children: [
       {
         path: '',

@@ -44,5 +44,7 @@ npm run dev
 - Install Vue-Router with NPM
 
 ```
-npm install vue-router
+npm install vue-router --save
 ```
+
+- Create `route.js` file to include routing information

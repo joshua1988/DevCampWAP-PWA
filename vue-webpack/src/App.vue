@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <header>
-      <h4>Main Page Header</h4>
-    </header>
-    <section>
-      <h3>Main Body</h3>
-    </section>
+    <router-view></router-view>
   </div>
 </template>
 
