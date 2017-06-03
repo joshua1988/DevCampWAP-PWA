@@ -29,3 +29,20 @@ firebase init
 // launch the firebase server
 firebase serve
 ```
+
+## Initialize the project with simple-webpack supported by Vue.js CLI
+- Run these following commands
+
+```
+npm install --global vue-cli
+vue init webpack-simple vue-webpack
+cd vue-webpack
+npm install
+npm run dev
+```
+
+- Install Vue-Router with NPM
+
+```
+npm install vue-router
+```

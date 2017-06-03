@@ -173,7 +173,7 @@ var List = {
     }
   },
   created: function () {
-    this.fetchData();
+    // this.fetchData();
   },
   watch: {
     // call again the method if the route changes
@@ -186,18 +186,19 @@ var routes = [
   {
     path: '/list',
     // @@ Named Views
-    components: {
-      default : List,
-      headerSideNav : headerSideNav
-    },
+    // components: {
+    //   default : List,
+    //   headerSideNav : headerSideNav
+    // },
+
     // @@ Nested Views
-    // components: List,
-    // children: [
-    //   {
-    //     path: '',
-    //     component: headerSideNav
-    //   }
-    // ]
+    components: List,
+    children: [
+      {
+        path: '',
+        component: headerSideNav
+      }
+    ]
   },
   { path: '/main', component: Main }
 ];
