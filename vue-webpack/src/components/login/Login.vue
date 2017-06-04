@@ -1,23 +1,29 @@
 <template lang="html">
-  <form>
+  <form novalidate @submit.stop.prevent="submit">
+    <md-input-container>
+      <md-icon>email</md-icon>
+      <label>Email</label>
+      <md-input type="text"></md-input>
+    </md-input-container>
+    <md-input-container>
+      <md-icon>lock</md-icon>
+      <label>Password</label>
+      <md-input type="password"></md-input>
+    </md-input-container>
     <div>
-      <label for="id">ID : </label>
-      <input type="email" name="id">
-    </div>
-    <div>
-      <label for="pw">PW : </label>
-      <input type="password" name="pw">
-    </div>
-    <div>
-      <button type="button" name="button">Login</button>
-      <button type="button" name="button">Google</button>
-      <button type="button" name="button">Facebook</button>
+      <md-button class="md-raised md-primary" v-on:click.native="loginWithGoogle">Google</md-button>
+      <md-button class="md-raised md-primary">Facebook</md-button>
     </div>
   </form>
 </template>
 
 <script>
 export default {
+  methods: {
+    loginWithGoogle(event) {
+      this.$router.push({path : '/home'});
+    }
+  }
 }
 </script>
 
