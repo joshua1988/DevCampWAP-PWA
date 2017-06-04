@@ -41,6 +41,8 @@
 </template>
 
 <script>
+  import { eventBus } from '../../main';
+
   export default {
     methods: {
       // Header Buttons
@@ -50,6 +52,7 @@
       },
       refreshData() {
         console.log('inject refersh feature in here');
+        eventBus.$emit('refresh', 10);
       },
       signOut(event) {
         console.log('inject firebase logout here');

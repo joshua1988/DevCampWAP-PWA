@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { eventBus } from '../../main';
+
 export default {
   methods: {
     fetchData() {
@@ -48,8 +50,13 @@ export default {
       snackbar_msg: ""
     }
   },
-  created: function () {
+  created() {
     this.fetchData();
+    var self = this;
+    // eventClick passed from a different component (Header)
+    eventBus.$on('refresh', function (data) {
+      self.fetchData()
+    });
   },
   watch: {
     // call again the method if the route changes
