@@ -20,11 +20,23 @@
 </template>
 
 <script>
-import parseString from 'xml2js';
 export default {
   methods: {
     fetchData() {
-      console.log(`add the fetch feature`);
+      var self = this;
+      var parseString = require('xml2js').parseString;
+
+      var url = 'http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/xml/RealtimeCityAir/1/5/';
+      return this.$http.get(url).then(function (result) {
+        parseString(result.body, function (err, result) {
+          if(result.RealtimeCityAir.RESULT[0].CODE == "INFO-000") {
+            console.log("the data was well received");
+            self.items = result.RealtimeCityAir.row;
+          }
+        });
+      }, function (err) {
+        console.log("Failed at calling OPEN API", error);
+      });
     }
   },
   data: function () {
