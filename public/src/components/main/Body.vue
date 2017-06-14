@@ -11,6 +11,11 @@
       </md-card>
     </section>
 
+    <div>
+      Lon : {{currentLocationLon}} <br>
+      Lat : {{currentLocationLat}}
+    </div>
+
     <!-- alert on the bottom -->
     <md-snackbar :md-position="vertical + ' ' + horizontal" ref="snackbar" :md-duration="duration">
       <span>{{snackbar_msg}}</span>
@@ -39,28 +44,55 @@ export default {
       }, function (err) {
         console.log("Failed at calling OPEN API", error);
       });
+    },
+    // Get User's Location Info
+    checkGeoSupport() {
+      if (navigator.geolocation) {
+        console.log('Geolocation is supported!');
+      } else {
+        console.log('Geolocation is not supported for this Browser/OS.');
+      }
+    },
+    getUserLocation() {
+      return navigator.geolocation.getCurrentPosition(function(position) {
+        this.currentLocation = position.coords
+        this.currentLocationLon = position.coords.longitude
+        this.currentLocationLat = position.coords.latitude
+        console.log(this.currentLocation)
+      }.bind(this)); // getCurrentPosition 비동기 실행 결과 값을 컴포넌트에 매핑
     }
   },
-  data: function () {
+  data () {
     return {
       items: null,
       vertical: 'bottom',
       horizontal: 'center',
       duration: 3000,
-      snackbar_msg: ""
+      snackbar_msg: "",
+
+      // Geolocation
+      currentLocation: null,
+      currentLocationLat: null,
+      currentLocationLon: null
     }
   },
   created() {
-    this.fetchData();
-    var self = this;
+    // Get weather info from Seoul Weather Center
+    // this.fetchData();
+
     // eventClick passed from a different component (Header)
+    var self = this;
     eventBus.$on('refresh', function (data) {
       self.fetchData()
     });
+
+    // Get get info
+    this.checkGeoSupport();
+    this.getUserLocation();
   },
   watch: {
     // call again the method if the route changes
-    '$route': 'fetchData'
+    '$route': ['fetchData', 'getUserLocation']
   }
 }
 </script>
