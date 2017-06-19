@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  props: ['geoLocation'],
   methods: {
     loginWithGoogle(event) {
       this.$router.push({path : '/home'});

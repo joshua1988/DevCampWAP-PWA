@@ -12,8 +12,8 @@
     </section>
 
     <div>
-      Lon : {{currentLocationLon}} <br>
-      Lat : {{currentLocationLat}}
+      Lon : {{geoLocation.currentLocationLon}} <br>
+      Lat : {{geoLocation.currentLocationLat}}
     </div>
 
     <!-- alert on the bottom -->
@@ -45,61 +45,22 @@ export default {
         console.log("Failed at calling OPEN API", error);
       });
     },
-    // Get User's Location Info
-    getUserLocation() {
-      if (navigator.geolocation) {
-        console.log('Geolocation is supported!');
-        return navigator.geolocation.getCurrentPosition(function(position) {
-          this.currentLocation = position.coords
-          this.currentLocationLon = position.coords.longitude
-          this.currentLocationLat = position.coords.latitude
-          console.log(this.currentLocation)
-        }.bind(this), function (error) { // getCurrentPosition 비동기 실행 결과 값을 컴포넌트에 매핑
-          console.log('Error occurred. Error code: ' + error.code);
-          switch (error.code) {
-            case 0:
-              console.log("Geolocation unknown error");
-              break;
-            case 1:
-              console.log("Geolocation permission denied");
-              break;
-            case 2:
-              console.log("Geolocation position unavailble");
-              break;
-            case 3:
-              console.log("Getting location info timed out");
-              break;
-            default:
-              console.log("Track the error");
-          }
-        }, { maximumAge: 5 * 60 * 1000 });
-      } else {
-        console.log('Geolocation is not supported for this Browser/OS.');
-      }
-    }
+
   },
+  // Data from App.vue
+  props: ['geoLocation'],
   data () {
     return {
       items: null,
       vertical: 'bottom',
       horizontal: 'center',
       duration: 3000,
-      snackbar_msg: "",
-
-      // Geolocation
-      currentLocation: null,
-      currentLocationLat: null,
-      currentLocationLon: null
+      snackbar_msg: ""
     }
   },
   created() {
     // Get weather info from Seoul Weather Center
     // this.fetchData();
-
-    // Get get info
-    // this.getUserLocation();
-
-    
 
     // eventClick passed from a different component (Header)
     var self = this;
@@ -109,7 +70,7 @@ export default {
   },
   watch: {
     // call again the method if the route changes
-    '$route': ['fetchData', 'getUserLocation']
+    '$route': ['fetchData']
   }
 }
 </script>
