@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="phone-viewport">
     <section>
-      <md-card v-for="item in items" style="margin:15px;">
+      <md-card v-for="item in items" :key='item.id' style="margin:15px;">
         <md-card-media>
           <!-- <img src="assets/card-image-2.jpg" alt="People"> -->
         </md-card-media>
@@ -15,8 +15,6 @@
       Lon : {{geoLocation.currentLocationLon}} <br>
       Lat : {{geoLocation.currentLocationLat}}
     </div>
-
-    <button type="button" name="button" @click='toastMessage("nice")'></button>
   </div>
 </template>
 
