@@ -1,8 +1,14 @@
 <template>
   <div id="app">
-    <router-view name="nestedHeader"></router-view>
-    <router-view v-bind:geoLocation="geoLocation"></router-view>
+    <router-view name="nestedHeader" :toastMessage='openToast'></router-view>
+    <router-view v-bind:geoLocation='geoLocation' :toastMessage='openToast'></router-view>
     <router-view name="summaryView"></router-view>
+
+    <!-- alert on the bottom -->
+    <md-snackbar :md-position="vertical + ' ' + horizontal" ref="snackbar" :md-duration="duration">
+      <span>{{snackbar_msg}}</span>
+      <md-button class="md-accent" md-theme="light-blue" @click.native="$refs.snackbar.close()">Close</md-button>
+    </md-snackbar>
   </div>
 </template>
 
@@ -12,6 +18,11 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
+      // Toast on the bottom
+      vertical: 'bottom',
+      horizontal: 'center',
+      duration: 3000,
+      snackbar_msg: "",
 
       // Geolocation
       geoLocation : {
@@ -53,6 +64,11 @@ export default {
       } else {
         console.log('Geolocation is not supported for this Browser/OS.');
       }
+    },
+    // Toast Log messages
+    openToast(msg) {
+      this.$refs.snackbar.open();
+      this.snackbar_msg = msg;
     }
   },
   created() {

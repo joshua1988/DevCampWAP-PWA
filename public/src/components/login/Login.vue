@@ -26,7 +26,7 @@ export default {
       password: ''
     }
   },
-  props: ['geoLocation'],
+  props: ['geoLocation', 'toastMessage'],
   methods: {
     loginWithGoogle(event) {
       console.log(firebase);
@@ -67,6 +67,7 @@ export default {
       }).then(function (user) {
         console.log(user, "has been logged");
         self.clearForm();
+        self.toastMessage(user.email + " just logged in");
         self.$router.push({path : '/home'});
       });
     },

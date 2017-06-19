@@ -44,6 +44,9 @@
   import { eventBus } from '../../main';
 
   export default {
+    props: {
+      'toastMessage': Function
+    },
     methods: {
       // Header Buttons
       toggleLeftSidenav(event) {
@@ -57,6 +60,7 @@
       signOut(event) {
         var self = this;
         firebase.auth().signOut().then(function() {
+          self.toastMessage('Logged out');
           self.$router.push({path : '/'});
         }, function(error) {
           console.log("error : ", error);

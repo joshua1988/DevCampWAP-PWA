@@ -16,11 +16,7 @@
       Lat : {{geoLocation.currentLocationLat}}
     </div>
 
-    <!-- alert on the bottom -->
-    <md-snackbar :md-position="vertical + ' ' + horizontal" ref="snackbar" :md-duration="duration">
-      <span>{{snackbar_msg}}</span>
-      <md-button class="md-accent" md-theme="light-blue" @click.native="$refs.snackbar.close()">Close</md-button>
-    </md-snackbar>
+    <button type="button" name="button" @click='toastMessage("nice")'></button>
   </div>
 </template>
 
@@ -48,14 +44,15 @@ export default {
 
   },
   // Data from App.vue
-  props: ['geoLocation'],
+  props: {
+    'geoLocation' : {
+      type: Object
+    },
+    'toastMessage': Function
+  },
   data () {
     return {
-      items: null,
-      vertical: 'bottom',
-      horizontal: 'center',
-      duration: 3000,
-      snackbar_msg: ""
+      items: null
     }
   },
   created() {
