@@ -55,7 +55,12 @@
         eventBus.$emit('refresh', 10);
       },
       signOut(event) {
-        console.log('inject firebase logout here');
+        var self = this;
+        firebase.auth().signOut().then(function() {
+          self.$router.push({path : '/'});
+        }, function(error) {
+          console.log("error : ", error);
+        });
       }
     }
   }
