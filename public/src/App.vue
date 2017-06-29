@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <router-view name="nestedHeader" :toastMessage='openToast'></router-view>
-    <router-view v-bind:geoLocation='geoLocation' :toastMessage='openToast'></router-view>
-    <router-view name="summaryView"></router-view>
+    <router-view v-bind:geoLocation='geoLocation' v-bind:AirInfo='AirInfo' :toastMessage='openToast'></router-view>
+    <router-view name="summaryView" v-bind:AirInfo='AirInfo'></router-view>
 
     <!-- alert on the bottom -->
     <md-snackbar :md-position="vertical + ' ' + horizontal" ref="snackbar" :md-duration="duration">
@@ -32,6 +32,15 @@ export default {
         currentLocationLat: null,
         currentLocationLon: null,
         currentDistrict: null
+      },
+
+      // Air info
+      AirInfo : {
+        MSRDT: '201706291700',
+        IDEX_NM: '나쁨',
+        PM10: null,
+        PM25: null,
+        O3: null
       }
     }
   },

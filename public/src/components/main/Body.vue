@@ -2,9 +2,9 @@
   <div class="phone-viewport">
     <section>
       <md-card v-for="item in items" :key='item.id' style="margin:15px;">
-        <md-card-media>
-          <!-- <img src="assets/card-image-2.jpg" alt="People"> -->
-        </md-card-media>
+        <!-- <md-card-media>
+          <img src="assets/logo-192.png" alt="People">
+        </md-card-media> -->
         <md-card-content>
           {{item}}
         </md-card-content>
@@ -15,6 +15,14 @@
       Lon : {{geoLocation.currentLocationLon}} <br>
       Lat : {{geoLocation.currentLocationLat}}
     </div>
+    <md-icon v-if="AirInfo.IDEX_NM" class="md-size-4x md-primary">sentiment_very_satisfied</md-icon>
+    <section>
+      일시 : {{AirInfo.MSRDT}} <br />
+      대기 상태 : {{AirInfo.IDEX_NM}} <br />
+      미세먼지 : {{AirInfo.PM10}} <br />
+      초미세먼지 : {{AirInfo.PM25}} <br />
+      오존 : {{AirInfo.O3}}
+    </section>
   </div>
 </template>
 
@@ -25,6 +33,9 @@ export default {
   // Data from App.vue
   props: {
     'geoLocation' : {
+      type: Object
+    },
+    'AirInfo' : {
       type: Object
     },
     'toastMessage': Function
@@ -40,9 +51,9 @@ export default {
 
       // 한글 URL 로 HTTP GET 요청시 발생하는 인코딩 문제 해결 필요
       var decodedURL = this.geoLocation.currentDistrict;
-
       var url = 'http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/json/RealtimeCityAir/1/25/';
       console.log(url);
+
       return this.$http.get(url).then(function (result) {
         // xml2js.parseString(result.body, function (err, result) {
         //   if(result.RealtimeCityAir.RESULT[0].CODE == "INFO-000") {
@@ -55,6 +66,12 @@ export default {
         if (result.body.RealtimeCityAir.RESULT.CODE == "INFO-000") {
           console.log("the data was well received");
           console.log(result.body.RealtimeCityAir.row[21]);
+
+          self.AirInfo.MSRDT = result.body.RealtimeCityAir.row[21].MSRDT;
+          self.AirInfo.IDEX_NM = result.body.RealtimeCityAir.row[21].IDEX_NM;
+          self.AirInfo.PM10 = result.body.RealtimeCityAir.row[21].PM10;
+          self.AirInfo.PM25 = result.body.RealtimeCityAir.row[21].PM25;
+          self.AirInfo.O3 = result.body.RealtimeCityAir.row[21].O3;
         }
       }, function (error) {
         console.log("Failed at calling OPEN API", error);

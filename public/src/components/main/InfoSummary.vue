@@ -8,23 +8,26 @@
       <md-icon class="md-primary">sentiment_very_satisfied</md-icon>
       <!-- sp-w-figures : span-weather-figures -->
       <span class="sp-w-figures">좋음</span>
+      <span>{{AirInfo.PM10}}</span>
     </div>
     <div class="d-w-info">
-      <span class="sp-w-elements">이산화질소</span>
+      <span class="sp-w-elements">초미세먼지</span>
       <md-icon class="md-accent">sentiment_neutral</md-icon>
       <span class="sp-w-figures">나쁨</span>
+      <span>{{AirInfo.PM25}}</span>
     </div>
     <div class="d-w-info">
       <span class="sp-w-elements">오존</span>
       <md-icon class="md-warn">sentiment_very_dissatisfied</md-icon>
       <span class="sp-w-figures">보통</span>
+      <span>{{AirInfo.O3}}</span>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-
+  props: ['AirInfo']
 }
 </script>
 
