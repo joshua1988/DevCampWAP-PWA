@@ -22,25 +22,6 @@
 import { eventBus } from '../../main';
 
 export default {
-  methods: {
-    fetchData() {
-      var self = this;
-      var parseString = require('xml2js').parseString;
-
-      var url = 'http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/xml/RealtimeCityAir/1/5/';
-      return this.$http.get(url).then(function (result) {
-        parseString(result.body, function (err, result) {
-          if(result.RealtimeCityAir.RESULT[0].CODE == "INFO-000") {
-            console.log("the data was well received");
-            self.items = result.RealtimeCityAir.row;
-          }
-        });
-      }, function (err) {
-        console.log("Failed at calling OPEN API", error);
-      });
-    },
-
-  },
   // Data from App.vue
   props: {
     'geoLocation' : {
@@ -53,6 +34,34 @@ export default {
       items: null
     }
   },
+  methods: {
+    fetchData(districtName) {
+      var self = this;
+
+      // 한글 URL 로 HTTP GET 요청시 발생하는 인코딩 문제 해결 필요
+      var decodedURL = this.geoLocation.currentDistrict;
+
+      var url = 'http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/json/RealtimeCityAir/1/25/';
+      console.log(url);
+      return this.$http.get(url).then(function (result) {
+        // xml2js.parseString(result.body, function (err, result) {
+        //   if(result.RealtimeCityAir.RESULT[0].CODE == "INFO-000") {
+        //     console.log("the data was well received");
+        //     self.items = result.RealtimeCityAir.row;
+        //   }
+        // });
+        // self.items = result;
+
+        if (result.body.RealtimeCityAir.RESULT.CODE == "INFO-000") {
+          console.log("the data was well received");
+          console.log(result.body.RealtimeCityAir.row[21]);
+        }
+      }, function (error) {
+        console.log("Failed at calling OPEN API", error);
+      });
+    },
+
+  },
   created() {
     // Get weather info from Seoul Weather Center
     // this.fetchData();
@@ -60,7 +69,7 @@ export default {
     // eventClick passed from a different component (Header)
     var self = this;
     eventBus.$on('refresh', function (data) {
-      self.fetchData()
+      self.fetchData(self.geoLocation.currentDistrict)
     });
   },
   watch: {

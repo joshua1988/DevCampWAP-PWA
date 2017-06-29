@@ -54,7 +54,6 @@
         return this.$refs.leftSidenav.toggle();
       },
       refreshData() {
-        console.log('inject refersh feature in here');
         eventBus.$emit('refresh', 10);
       },
       signOut(event) {

@@ -29,7 +29,7 @@ export default {
   props: ['geoLocation', 'toastMessage'],
   methods: {
     loginWithGoogle(event) {
-      console.log(firebase);
+      var self = this;
       var provider = new firebase.auth.GoogleAuthProvider();
 
       firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -39,6 +39,7 @@ export default {
         console.log(result);
         console.log("token : ", token);
         console.log("user : ", user);
+        self.$router.push({path : '/home'});
       }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
