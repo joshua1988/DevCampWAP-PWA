@@ -33,36 +33,21 @@ export default {
       var provider = new firebase.auth.GoogleAuthProvider();
 
       firebase.auth().signInWithPopup(provider).then(function(result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        var user = result.user;
-        console.log(result);
-        console.log("token : ", token);
         console.log("user : ", user);
         self.$router.push({path : '/home'});
       }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        console.log("errorCode: " + errorCode + ". errorMessage : " + errorMessage + ". email : " + email);
+        console.log("errorCode: " + error.code + ". errorMessage : " + error.message + ". email : " + error.email);
       });
-      // this.$router.push({path : '/home'});
     },
     loginWithInfo(event) {
       var self = this;
       if (this.loginExceptionHandler()) return true;
 
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
+        if (error.code === 'auth/wrong-password') {
           alert('Wrong password.');
         } else {
-          alert(errorMessage);
+          alert(error.message);
         }
         console.log(error);
       }).then(function (user) {

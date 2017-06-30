@@ -10,18 +10,15 @@
         </md-card-content>
       </md-card>
     </section>
-
-    <div>
-      Lon : {{geoLocation.currentLocationLon}} <br>
-      Lat : {{geoLocation.currentLocationLat}}
-    </div>
-    <md-icon v-if="AirInfo.IDEX_NM" class="md-size-4x md-primary">sentiment_very_satisfied</md-icon>
-    <section>
-      일시 : {{AirInfo.MSRDT}} <br />
-      대기 상태 : {{AirInfo.IDEX_NM}} <br />
-      미세먼지 : {{AirInfo.PM10}} <br />
-      초미세먼지 : {{AirInfo.PM25}} <br />
-      오존 : {{AirInfo.O3}}
+    <section v-if="geoLocation.currentDistrict">
+      <md-icon v-if="AirInfo.IDEX_NM" class="md-size-4x md-primary">sentiment_very_satisfied</md-icon>
+      <div>
+        일시 : {{AirInfo.MSRDT}} <br />
+        대기 상태 : {{AirInfo.IDEX_NM}} <br />
+        미세먼지 : {{AirInfo.PM10}} <br />
+        초미세먼지 : {{AirInfo.PM25}} <br />
+        오존 : {{AirInfo.O3}}
+      </div>
     </section>
   </div>
 </template>
@@ -50,7 +47,7 @@ export default {
       var self = this;
 
       // 한글 URL 로 HTTP GET 요청시 발생하는 인코딩 문제 해결 필요
-      var decodedURL = this.geoLocation.currentDistrict;
+      var decodedURL = districtName;
       var url = 'http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/json/RealtimeCityAir/1/25/';
       console.log(url);
 

@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { getUserLocation } from './utils/geo.js'
-
 export default {
   name: 'app',
   data () {
@@ -51,7 +49,7 @@ export default {
         this.geoLocation.currentLocation = position.coords;
         this.geoLocation.currentLocationLon = position.coords.longitude;
         this.geoLocation.currentLocationLat = position.coords.latitude;
-        console.log(this.geoLocation.currentLocation);
+        this.geoToDistrictName(position.coords.latitude, position.coords.longitude);
       }.bind(this), function (error) { // getCurrentPosition 비동기 실행 결과 값을 컴포넌트에 매핑
         console.log('Error occurred. Error code: ' + error.code);
         switch (error.code) {
@@ -76,6 +74,7 @@ export default {
     geoToDistrictName(lat, lng) {
       var self = this;
       naver.maps.Service.reverseGeocode({
+        // 역삼역 고정값
         location: new naver.maps.LatLng(37.4954841, 127.0333574),
       }, function(status, response) {
         if (status !== naver.maps.Service.Status.OK) {
@@ -100,7 +99,6 @@ export default {
     if (navigator.geolocation) {
       console.log('Geolocation is supported!');
       this.getUserLocation();
-      this.geoToDistrictName();
     } else {
       console.log('Geolocation is not supported for this Browser/OS.');
     }
