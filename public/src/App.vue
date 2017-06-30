@@ -17,7 +17,6 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       // Toast on the bottom
       vertical: 'bottom',
       horizontal: 'center',

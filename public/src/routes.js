@@ -1,6 +1,6 @@
 import Login from './components/login/Login.vue';
 import Body from './components/main/Body.vue';
-import List from './components/main/List.vue';
+import Share from './components/main/Share.vue';
 import InfoSummary from './components/main/InfoSummary.vue';
 import Header from './components/common/Header.vue';
 
@@ -15,4 +15,11 @@ export const routes = [
       summaryView: InfoSummary
     }
   },
+  {
+    path : '/share',
+    components: {
+      nestedHeader: Header,
+      default: Share
+    }
+  }
 ]

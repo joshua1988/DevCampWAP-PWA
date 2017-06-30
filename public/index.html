@@ -4,15 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="src/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" href="src/assets/favicon.ico" type="image/x-icon">
+    <!-- Facebook Open Graph-->
+    <meta property="og:url"                content="https://devcamp-firebase-52bee.firebaseapp.com/#/share" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="Realtime Air Condition" />
+    <meta property="og:description"        content="Let's see how the weather looks like" />
+    <meta property="og:image"              content="https://devcamp-firebase-52bee.firebaseapp.com/src/assets/logo.png" />
+    <!-- Vue Materialize -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="vue-material.css">
     <title>vue-webpack</title>
   </head>
   <body>
+    <!-- Facebook SDK init -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=249241775578881";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <div id="app"></div>
     <script src="src/vendor/firebase.js"></script>
     <script>

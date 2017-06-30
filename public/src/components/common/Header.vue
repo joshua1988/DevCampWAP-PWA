@@ -23,18 +23,18 @@
         </div>
       </md-toolbar>
       <md-list>
-        <!-- <md-list-item>Plain Text</md-list-item>
-        <md-list-item target="_blank" href="https://google.com">Link</md-list-item>
-        <md-list-item @click.native="openAlert">Button</md-list-item> -->
         <md-list-item>
-          <router-link to="/home">Home</router-link>
+          <router-link to="/home" v-on:click.native="toggleLeftSidenav">Home</router-link>
         </md-list-item>
         <md-list-item>
-          <router-link to="/list">List</router-link>
+          <router-link to="/share" v-on:click.native="toggleLeftSidenav">Share</router-link>
         </md-list-item>
         <md-list-item>
           <router-link to="/">To Login</router-link>
         </md-list-item>
+        <!-- <md-list-item>Plain Text</md-list-item>
+        <md-list-item target="_blank" href="https://google.com">Link</md-list-item>
+        <md-list-item @click.native="openAlert">Button</md-list-item> -->
       </md-list>
     </md-sidenav>
   </div>
