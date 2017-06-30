@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="src/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" href="src/assets/favicon.ico" type="image/x-icon">
     <!-- Facebook Open Graph-->
@@ -15,38 +15,27 @@
     <meta property="og:description"        content="Let's see how the weather looks like" />
     <meta property="og:image"              content="https://devcamp-firebase-52bee.firebaseapp.com/src/assets/logo.png" />
     <!-- Vue Materialize -->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="vue-material.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="src/css/vue-material.css">
     <title>vue-webpack</title>
   </head>
   <body>
     <!-- Facebook SDK init -->
-    <div id="fb-root"></div>
+    <!-- <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=249241775578881";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));</script> -->
 
     <div id="app"></div>
     <script src="src/vendor/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCVp8hvtSBVyirMt8RPNe64zx8-RtMKzU0",
-        authDomain: "devcamp-firebase-52bee.firebaseapp.com",
-        databaseURL: "https://devcamp-firebase-52bee.firebaseio.com",
-        projectId: "devcamp-firebase-52bee",
-        storageBucket: "devcamp-firebase-52bee.appspot.com",
-        messagingSenderId: "654139255262"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <!-- <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=Z9slxvNssnmhAcBEHlm1"></script> -->
+    <!-- <script src="src/vendor/naver-maps.js"></script> -->
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=Z9slxvNssnmhAcBEHlm1&submodules=geocoder"></script>
+    <script src="app-init.js"></script>
     <script src="/dist/build.js"></script>
   </body>
 </html>

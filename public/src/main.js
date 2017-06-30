@@ -13,7 +13,9 @@ Vue.use(VueMaterial);
 Vue.use(VueResource);
 
 const router = new VueRouter({
-  routes
+  routes,
+  // get rid of #
+  mode: 'history'
 });
 
 // Event Bus
