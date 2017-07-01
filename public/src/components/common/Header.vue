@@ -70,4 +70,7 @@
 </script>
 
 <style lang="css">
+.md-toolbar {
+  background-color: transparent !important;
+}
 </style>

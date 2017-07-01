@@ -1,18 +1,16 @@
 <template lang="html">
-  <div>
-    <section>
-      날씨 정보
-    </section>
-    <section>
-      <md-button class="md-fab md-primary" v-on:click.native="shareToFacebook">
-        <md-icon>share</md-icon>
-      </md-button>
-      <!-- <div class="fb-share-button" data-href="https://devcamp-firebase-52bee.firebaseapp.com/#/share" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevcamp-firebase-52bee.firebaseapp.com%2F%23%2Fshare&amp;src=sdkpreparse">Share</a></div> -->
+  <div class="share-buttons-container">
+    <md-button class="md-fab md-fab-bottom-left">
+      <md-icon>save</md-icon>
+    </md-button>
 
-      <md-button class="md-fab">
-        <md-icon>email</md-icon>
-      </md-button>
-    </section>
+    <md-button class="md-fab md-primary md-fab-bottom-center">
+      <md-icon>dialpad</md-icon>
+    </md-button>
+
+    <md-button class="md-fab md-fab-bottom-right">
+      <md-icon>add</md-icon>
+    </md-button>
   </div>
 </template>
 
@@ -27,4 +25,11 @@ export default {
 </script>
 
 <style lang="css">
+.share-buttons-container {
+  position: absolute;
+  background: white;
+  top: 80%;
+  bottom: 0;
+  width: 100%;
+}
 </style>

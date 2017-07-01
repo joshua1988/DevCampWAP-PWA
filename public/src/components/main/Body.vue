@@ -1,24 +1,19 @@
 <template lang="html">
-  <div class="phone-viewport">
-    <section>
+  <div class="current-air-container">
+    <!-- <section>
       <md-card v-for="item in items" :key='item.id' style="margin:15px;">
-        <!-- <md-card-media>
+        <md-card-media>
           <img src="assets/logo-192.png" alt="People">
-        </md-card-media> -->
+        </md-card-media>
         <md-card-content>
           {{item}}
         </md-card-content>
       </md-card>
-    </section>
-    <section v-if="geoLocation.currentDistrict">
-      <md-icon v-if="AirInfo.IDEX_NM" class="md-size-4x md-primary">sentiment_very_satisfied</md-icon>
-      <div>
-        일시 : {{AirInfo.MSRDT}} <br />
-        대기 상태 : {{AirInfo.IDEX_NM}} <br />
-        미세먼지 : {{AirInfo.PM10}} <br />
-        초미세먼지 : {{AirInfo.PM25}} <br />
-        오존 : {{AirInfo.O3}}
-      </div>
+    </section> -->
+    <section v-if="geoLocation.currentDistrict" class="air-status-section">
+      <md-icon v-if="AirInfo.IDEX_NM" class="main-air-status-icon md-size-4x md-primary">sentiment_very_satisfied</md-icon>
+      <div class="main-status-text">{{AirInfo.MSRSTE_NM}}의 대기는 지금 {{AirInfo.IDEX_NM}}!</div>
+      <div class="main-status-date-text">일시 : {{AirInfo.MSRDT}}</div>
     </section>
   </div>
 </template>
@@ -69,6 +64,7 @@ export default {
           self.AirInfo.PM10 = result.body.RealtimeCityAir.row[21].PM10;
           self.AirInfo.PM25 = result.body.RealtimeCityAir.row[21].PM25;
           self.AirInfo.O3 = result.body.RealtimeCityAir.row[21].O3;
+          self.AirInfo.MSRSTE_NM = result.body.RealtimeCityAir.row[21].MSRSTE_NM;
         }
       }, function (error) {
         console.log("Failed at calling OPEN API", error);
@@ -94,4 +90,26 @@ export default {
 </script>
 
 <style lang="css">
+.current-air-container {
+  text-align: center;
+  color: white;
+  height: 230px;
+  line-height: 230px;
+}
+.air-status-section {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+.md-icon.md-primary {
+  color: white !important;
+}
+.main-status-text {
+  font-size: 1.5rem;
+  margin: 7px 0 3px;
+}
+.main-status-date-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.78);
+}
 </style>

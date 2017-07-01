@@ -3,6 +3,7 @@
     <router-view name="nestedHeader" :toastMessage='openToast'></router-view>
     <router-view v-bind:geoLocation='geoLocation' v-bind:AirInfo='AirInfo' :toastMessage='openToast'></router-view>
     <router-view name="summaryView" v-bind:AirInfo='AirInfo'></router-view>
+    <router-view name="shareView" v-bind:AirInfo='AirInfo'></router-view>
 
     <!-- alert on the bottom -->
     <md-snackbar :md-position="vertical + ' ' + horizontal" ref="snackbar" :md-duration="duration">
@@ -106,4 +107,8 @@ export default {
 </script>
 
 <style>
+  #app {
+    background: #FA4659;
+    height: 100%;
+  }
 </style>

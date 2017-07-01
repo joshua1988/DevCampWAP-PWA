@@ -12,7 +12,8 @@ export const routes = [
     components: {
       nestedHeader: Header,
       default: Body,
-      summaryView: InfoSummary
+      summaryView: InfoSummary,
+      shareView: Share
     }
   },
   {
