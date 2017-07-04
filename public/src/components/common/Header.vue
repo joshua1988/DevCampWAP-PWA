@@ -5,7 +5,7 @@
       <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>
-      <h2 class="md-title">PWA</h2>
+      <h2 class="md-title">PWAir</h2>
       <span style="flex: 1"></span>
       <md-button class="md-icon-button" v-on:click.native="refreshData">
         <md-icon>refresh</md-icon>

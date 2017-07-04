@@ -5,23 +5,22 @@
     <div class="weather-info-container">
       <div class="d-w-info">
         <!-- sp-w-elements : span-weather-elements -->
-        <span class="sp-w-elements">미세먼지</span>
-        <md-icon class="md-size-2x">sentiment_very_satisfied</md-icon>
-        <!-- sp-w-figures : span-weather-figures -->
-        <span class="sp-w-figures">좋음</span>
-        <span>{{AirInfo.PM10}}</span>
+        <span class="current-title">미세먼지</span>
+        <span class="current-icon icon-laughing-face"></span>
+        <span class="current-status">좋음</span>
+        <span>{{AirInfo.PM10}}㎍/㎥</span>
       </div>
       <div class="d-w-info">
-        <span class="sp-w-elements">초미세먼지</span>
-        <md-icon class="md-accent md-size-2x">sentiment_neutral</md-icon>
-        <span class="sp-w-figures">나쁨</span>
-        <span>{{AirInfo.PM25}}</span>
+        <span class="current-title">오존</span>
+        <span class="current-icon icon-astonished-face"></span>
+        <span class="current-status">나쁨</span>
+        <span>{{AirInfo.O3}}ppm</span>
       </div>
       <div class="d-w-info">
-        <span class="sp-w-elements">오존</span>
-        <md-icon class="md-warn md-size-2x">sentiment_very_dissatisfied</md-icon>
-        <span class="sp-w-figures">보통</span>
-        <span>{{AirInfo.O3}}</span>
+        <span class="current-title">초미세먼지</span>
+        <span class="current-icon icon-face-open-mouth-eyebrows"></span>
+        <span class="current-status">보통</span>
+        <span>{{AirInfo.PM25}}㎍/㎥</span>
       </div>
     </div>
   </section>
@@ -34,29 +33,29 @@ export default {
 </script>
 
 <style lang="css">
-  .weather-info-section {
-    position: absolute;
-    background: white;
-    top: 50%;
-    bottom: 0;
-    width: 100%
-  }
-  .weather-info-container {
-    display: flex;
-    text-align: center;
-    padding: 2% 0 2% 0;
-  }
-  .d-w-info {
-    width: 33%;
-    display: inline-grid;
-  }
-  .sp-w-elements {
-    padding-bottom: 2%;
-  }
-  .sp-w-figures {
-    padding-top: 2%;
-  }
-  .share-button-container {
-
-  }
+.weather-info-section {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.35);
+  top: 72%;
+  bottom: 0;
+  width: 100%;
+  color: white;
+}
+.weather-info-container {
+  display: flex;
+  text-align: center;
+  margin-top: 7%;
+  padding: 0 0.5rem;
+}
+.d-w-info {
+  width: 33%;
+  display: inline-grid;
+}
+.d-w-info .current-title {
+  font-size: 1.1rem;
+}
+.d-w-info .current-icon {
+  font-size: 3rem;
+  margin-top: 4px;
+}
 </style>
