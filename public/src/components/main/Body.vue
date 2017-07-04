@@ -43,16 +43,16 @@ export default {
       var self = this;
 
       // 한글 URL 로 HTTP GET 요청시 발생하는 인코딩 문제 해결 필요
-      // var decodedURL = districtName;
-      // var url = 'http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/json/RealtimeCityAir/1/25/';
+      var decodedURL = districtName;
+      var url = 'http://openapi.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/json/RealtimeCityAir/1/25/';
 
       // 권역 선택 + 자치구 선택
       // http://openAPI.seoul.go.kr:8088/746a5361636a6f7337336e4f656579/json/RealtimeCityAir/1/5/동북권/성북구
 
       // 자치구 선택
       // 대기오염 정보 Open API 활용가이드 - 17페이지
-      var serviceKey = 'TNXrkDjzIjFlOWrBnFo8Q26S5jU%2BN2gWAalGbVsm4QAwIZRzpJtPGSY8YapNMK8RpUahVb2oyycFSWgsDwaxsA%3D%3D';
-      var url = 'https://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=' + districtName + '&dataTerm=daily&pageNo=1&numOfRows=1&ServiceKey=' + serviceKey + '&ver=1.3';
+      // var serviceKey = 'TNXrkDjzIjFlOWrBnFo8Q26S5jU%2BN2gWAalGbVsm4QAwIZRzpJtPGSY8YapNMK8RpUahVb2oyycFSWgsDwaxsA%3D%3D';
+      // var url = 'https://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=' + districtName + '&dataTerm=daily&pageNo=1&numOfRows=1&ServiceKey=' + serviceKey + '&ver=1.3';
       // var url = 'https://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=강남구&dataTerm=daily&pageNo=1&numOfRows=1&ServiceKey=TNXrkDjzIjFlOWrBnFo8Q26S5jU%2BN2gWAalGbVsm4QAwIZRzpJtPGSY8YapNMK8RpUahVb2oyycFSWgsDwaxsA%3D%3D&ver=1.3';
       // http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=%EC%A2%85%EB%A1%9C%EA%B5%AC&dataTerm=daily&pageNo=1&numOfRows=1&ServiceKey=TNXrkDjzIjFlOWrBnFo8Q26S5jU%2BN2gWAalGbVsm4QAwIZRzpJtPGSY8YapNMK8RpUahVb2oyycFSWgsDwaxsA%3D%3D&ver=1.3
 
@@ -66,7 +66,7 @@ export default {
         //   }
         // });
         // self.items = result;
-
+        console.log(result);
         if (result.body.RealtimeCityAir.RESULT.CODE == "INFO-000") {
           const airData = result.body.RealtimeCityAir.row[21];
           console.log("the data was well received");

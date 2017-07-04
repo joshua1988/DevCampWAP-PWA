@@ -27,7 +27,7 @@
           <router-link to="/home" v-on:click.native="toggleLeftSidenav">Home</router-link>
         </md-list-item>
         <md-list-item>
-          <router-link to="/share" v-on:click.native="toggleLeftSidenav">Share</router-link>
+          <router-link to="/logs" v-on:click.native="toggleLeftSidenav">Statistic</router-link>
         </md-list-item>
         <md-list-item>
           <router-link to="/">To Login</router-link>
