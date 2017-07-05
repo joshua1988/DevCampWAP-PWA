@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="current-air-container">
     <section v-if="geoLocation.currentDistrict" class="air-status-section">
-      <span class="main-icon icon-astonished-face"></span>
+      <span class="main-icon icon-angry-face-teeth"></span>
       <div class="main-status-score">{{AirInfo.IDEX_MVL}}</div>
       <div class="main-status-text">{{AirInfo.MSRSTE_NM}}의 대기는 지금 {{AirInfo.IDEX_NM}}!</div>
       <div class="main-status-date">기준 : {{AirInfo.MSRDT}}</div>
