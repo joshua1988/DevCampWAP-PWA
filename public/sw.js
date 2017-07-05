@@ -8,6 +8,7 @@ var urlsToCache = [
   // Images
   '/src/assets/favicon.ico',
   '/src/assets/images/logo-192.png',
+  '/src/assets/images/logo-144.png',
   '/src/assets/images/logo-96.png',
   '/src/assets/images/logo-48.png',
   '/src/assets/images/logo.png',
