@@ -1,22 +1,22 @@
 <template lang="html">
   <div class="current-air-container">
-    <!-- <section>
-    <md-card v-for="item in items" :key='item.id' style="margin:15px;">
-    <md-card-media>
-    <img src="assets/logo-192.png" alt="People">
-  </md-card-media>
-  <md-card-content>
-  {{item}}
-</md-card-content>
-</md-card>
-</section> -->
-<section v-if="geoLocation.currentDistrict" class="air-status-section">
-  <span class="main-icon icon-astonished-face"></span>
-  <div class="main-status-score">{{AirInfo.IDEX_MVL}}</div>
-  <div class="main-status-text">{{AirInfo.MSRSTE_NM}}의 대기는 지금 {{AirInfo.IDEX_NM}}!</div>
-  <div class="main-status-date">기준 : {{AirInfo.MSRDT}}</div>
-</section>
-</div>
+      <!-- <section>
+      <md-card v-for="item in items" :key='item.id' style="margin:15px;">
+      <md-card-media>
+      <img src="assets/logo-192.png" alt="People">
+    </md-card-media>
+    <md-card-content>
+    {{item}}
+  </md-card-content>
+  </md-card>
+  </section> -->
+  <section v-if="geoLocation.currentDistrict" class="air-status-section">
+    <span class="main-icon icon-astonished-face"></span>
+    <div class="main-status-score">{{AirInfo.IDEX_MVL}}</div>
+    <div class="main-status-text">{{AirInfo.MSRSTE_NM}}의 대기는 지금 {{AirInfo.IDEX_NM}}!</div>
+    <div class="main-status-date">기준 : {{AirInfo.MSRDT}}</div>
+  </section>
+  </div>
 </template>
 
 <script>
