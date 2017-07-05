@@ -73,8 +73,8 @@ export default {
 </script>
 
 <style lang="css">
-  input {
-    border-style: groove;
+  .md-input-container {
+    margin: 0px 0 24px;
   }
   button {
     border-radius: 1em;

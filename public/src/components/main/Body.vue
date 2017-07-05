@@ -134,5 +134,4 @@ export default {
   font-size: 3.2rem;
   font-weight: 100;
 }
-
 </style>
