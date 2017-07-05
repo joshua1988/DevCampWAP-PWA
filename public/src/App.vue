@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:style="appStyle">
     <router-view name="nestedHeader" :toastMessage='openToast'></router-view>
-    <router-view v-bind:geoLocation='geoLocation' v-bind:AirInfo='AirInfo' :toastMessage='openToast'></router-view>
+    <router-view v-bind:geoLocation='geoLocation' v-bind:AirInfo='AirInfo' v-bind:appStyle='appStyle' :toastMessage='openToast'></router-view>
     <router-view name="summaryView" v-bind:AirInfo='AirInfo'></router-view>
     <!-- <router-view name="shareView" v-bind:AirInfo='AirInfo'></router-view> -->
 
@@ -32,13 +32,18 @@ export default {
         currentDistrict: null
       },
 
-      // Air info
+      // Air status info
       AirInfo : {
         MSRDT: '201706291700',
         IDEX_NM: '나쁨',
         PM10: null,
         PM25: null,
         O3: null
+      },
+
+      appStyle : {
+        background: '#FA4659',
+        height: '100%'
       }
     }
   },
@@ -107,8 +112,9 @@ export default {
 </script>
 
 <style>
-  #app {
-    background: #FA4659; /* 나쁨: #FA4659 보통: #ffa020, 좋음: #53dcbf */
+  /* 나쁨: #FA4659 보통: #ffa020, 좋음: #53dcbf */
+  /*#app {
+    background: #FA4659;
     height: 100%;
-  }
+  }*/
 </style>

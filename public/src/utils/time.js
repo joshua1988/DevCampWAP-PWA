@@ -1,20 +1,18 @@
 // Get today's date in yymmhh format
 export function getCurrentDate() {
-  var rightNow = new Date();
-  return rightNow.toISOString().slice(0,10).replace(/-/g,"");
+  var date = new Date();
+  return date.toISOString().slice(0,10).replace(/-/g,"");
 };
 
 // Date Format : yyyymmdd
 export function getYesterday() {
   var date = new Date();
-  // yyyy
   var yyyy = date.getFullYear();
-  // mm
   var currentMonth = date.getUTCMonth() + 1;
   var mm = currentMonth < 10 ? "0" + currentMonth : currentMonth;
-  // dd
   var dd = '';
   var currentDay = date.getUTCDate();
+
   if (currentDay < 10) {
     dd = "0" + currentDay;
   } else if (currentDay > 10 && currentDay < 20) {
@@ -27,5 +25,15 @@ export function getYesterday() {
 }
 
 export function getLastMonth() {
+  var date = new Date();
+  var yyyy = date.getFullYear();
+  var month = date.getMonth();
 
+  if (month < 10) {
+    month = yyyy + "0" + month;
+  } else {
+    month = yyyy + month;
+  }
+
+  return month;
 }

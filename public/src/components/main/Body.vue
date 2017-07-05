@@ -1,21 +1,11 @@
 <template lang="html">
   <div class="current-air-container">
-      <!-- <section>
-      <md-card v-for="item in items" :key='item.id' style="margin:15px;">
-      <md-card-media>
-      <img src="assets/logo-192.png" alt="People">
-    </md-card-media>
-    <md-card-content>
-    {{item}}
-  </md-card-content>
-  </md-card>
-  </section> -->
-  <section v-if="geoLocation.currentDistrict" class="air-status-section">
-    <span class="main-icon icon-astonished-face"></span>
-    <div class="main-status-score">{{AirInfo.IDEX_MVL}}</div>
-    <div class="main-status-text">{{AirInfo.MSRSTE_NM}}의 대기는 지금 {{AirInfo.IDEX_NM}}!</div>
-    <div class="main-status-date">기준 : {{AirInfo.MSRDT}}</div>
-  </section>
+    <section v-if="geoLocation.currentDistrict" class="air-status-section">
+      <span class="main-icon icon-astonished-face"></span>
+      <div class="main-status-score">{{AirInfo.IDEX_MVL}}</div>
+      <div class="main-status-text">{{AirInfo.MSRSTE_NM}}의 대기는 지금 {{AirInfo.IDEX_NM}}!</div>
+      <div class="main-status-date">기준 : {{AirInfo.MSRDT}}</div>
+    </section>
   </div>
 </template>
 
@@ -31,7 +21,10 @@ export default {
     'AirInfo' : {
       type: Object
     },
-    'toastMessage': Function
+    'toastMessage': Function,
+    'appStyle' : {
+      type: Object
+    }
   },
   data () {
     return {
@@ -57,34 +50,43 @@ export default {
       // http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=%EC%A2%85%EB%A1%9C%EA%B5%AC&dataTerm=daily&pageNo=1&numOfRows=1&ServiceKey=TNXrkDjzIjFlOWrBnFo8Q26S5jU%2BN2gWAalGbVsm4QAwIZRzpJtPGSY8YapNMK8RpUahVb2oyycFSWgsDwaxsA%3D%3D&ver=1.3
 
       console.log(url);
-
       return this.$http.get(url).then(function (result) {
-        // xml2js.parseString(result.body, function (err, result) {
-        //   if(result.RealtimeCityAir.RESULT[0].CODE == "INFO-000") {
-        //     console.log("the data was well received");
-        //     self.items = result.RealtimeCityAir.row;
-        //   }
-        // });
-        // self.items = result;
-        console.log(result);
+        // console.log(result);
         if (result.body.RealtimeCityAir.RESULT.CODE == "INFO-000") {
           const airData = result.body.RealtimeCityAir.row[21];
           console.log("the data was well received");
-          console.log(airData);
+          // console.log(airData);
 
-          self.AirInfo.MSRDT = airData.MSRDT;
-          self.AirInfo.IDEX_NM = airData.IDEX_NM;
-          self.AirInfo.PM10 = airData.PM10;
-          self.AirInfo.PM25 = airData.PM25;
-          self.AirInfo.O3 = airData.O3;
-          self.AirInfo.MSRSTE_NM = airData.MSRSTE_NM;
-          self.AirInfo.IDEX_MVL = airData.IDEX_MVL;
+          self.setAirStatus(airData);
+          self.updateAppColor(airData.IDEX_NM);
         }
       }, function (error) {
         console.log("Failed at calling OPEN API", error);
       });
     },
-
+    setAirStatus(airData) {
+      this.AirInfo.MSRDT = airData.MSRDT;
+      this.AirInfo.IDEX_NM = airData.IDEX_NM;
+      this.AirInfo.PM10 = airData.PM10;
+      this.AirInfo.PM25 = airData.PM25;
+      this.AirInfo.O3 = airData.O3;
+      this.AirInfo.MSRSTE_NM = airData.MSRSTE_NM;
+      this.AirInfo.IDEX_MVL = airData.IDEX_MVL;
+    },
+    updateAppColor(status) {
+      switch (status) {
+        case '나쁨':
+          this.appStyle.background = '#FA4659';
+          break;
+        case '보통':
+          this.appStyle.background = '#ffa020';
+          break;
+        case '좋음':
+          this.appStyle.background = '#53dcbf';
+          break;
+        default:
+      }
+    }
   },
   created() {
     // Get weather info from Seoul Weather Center
