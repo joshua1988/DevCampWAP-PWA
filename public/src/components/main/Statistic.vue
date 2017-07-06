@@ -1,17 +1,24 @@
 <template lang="html">
   <div>
-    <header>
-      <h3>지난 미세먼지 지수 보기</h3>
-    </header>
-    <md-input-container>
-      <label for="selectedDate">날짜 선택</label>
-      <md-select name="selectedDate" id="selectedDate" v-model="selectedPastDate">
-        <md-option value="yesterday">어제</md-option>
-        <md-option value="lastMonth">지난달</md-option>
-      </md-select>
-    </md-input-container>
-    <!-- Vue Chart -->
-    <BarChart v-bind:selectedPastDate="selectedPastDate"></BarChart>
+    <md-card class="example-box-card">
+      <md-toolbar md-theme="white" class="md-dense">
+        <h3 class="md-title">지난 미세먼지 지수 보기</h3>
+      </md-toolbar>
+
+      <md-card-area>
+        <md-tabs md-right :md-dynamic-height="false" class="md-transparent example-tabs">
+          <md-tab md-label="어제" md-active>
+            <!-- Vue Chart -->
+            <BarChart v-bind:selectedPeriod="yesterday"></BarChart>
+          </md-tab>
+
+          <md-tab md-label="지난달">
+            <!-- Vue Chart -->
+            <BarChart v-bind:selectedPeriod="lastMonth"></BarChart>
+          </md-tab>
+        </md-tabs>
+      </md-card-area>
+    </md-card>
   </div>
 </template>
 
@@ -23,23 +30,39 @@ import { eventBus } from '../../main';
 export default {
   data () {
     return {
-      selectedPastDate: ''
+      yesterday: 'yesterday',
+      lastMonth: 'lastMonth'
     }
-  },
-  methods: {
-    
   },
   components: {
     BarChart
-  },
-  watch: {
-    selectedPastDate(e) {
-      eventBus.$emit('selectPastDate', this.selectedPastDate);
-    }
   }
 }
 </script>
 
 <style scoped>
+.md-tabs-navigation-scroll-container {
+  display: flex;
+}
+.example-box {
+  margin-bottom: 16px;
+}
+.example-box-card {
+  position: relative;
+  overflow: hidden;
 
+  /*&:hover .md-codepen {
+    opacity: .54;
+    transform: translate3D(0, 0, 0);
+    transition: .4s cubic-bezier(.25, .8, .25, 1);
+  }*/
+}
+.example-tabs {
+  margin-top: -48px;
+
+  @media (max-width: 480px) {
+    margin-top: -1px;
+    background-color: #fff;
+  }
+}
 </style>
