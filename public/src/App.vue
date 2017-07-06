@@ -41,7 +41,7 @@ export default {
       },
 
       appStyle : {
-        background: '#FA4659',
+        background: '#2772DB',
         height: '100%'
       }
     }
