@@ -23,26 +23,13 @@ export default Bar.extend({
     }
   },
   created () {
-    var self = this;
-
     if (this.selectedPeriod == 'yesterday') {
-      self.updateURL('daily');
-      self.fetchData('yesterday');
+      this.updateURL('daily');
+      this.fetchData('yesterday');
     } else {
-      self.updateURL('monthly');
-      self.fetchData('lastMonth');
+      this.updateURL('monthly');
+      this.fetchData('lastMonth');
     }
-
-    // ## Select Box Case
-    // eventBus.$on('selectPastDate', function (data) {
-    //   if (data == "yesterday") {
-    //     self.updateURL('daily');
-    //     self.fetchData('yesterday');
-    //   } else if (data == "lastMonth") {
-    //     self.updateURL('monthly');
-    //     self.fetchData('lastMonth');
-    //   }
-    // });
   },
   mounted () {
     // Overwriting base render method with actual data.

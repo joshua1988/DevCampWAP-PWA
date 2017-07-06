@@ -41,13 +41,8 @@ export default {
 </script>
 
 <style scoped>
-.md-tabs-navigation-scroll-container {
-  display: flex;
-}
-.example-box {
-  margin-bottom: 16px;
-}
 .example-box-card {
+  margin: 0 0.3rem;
   position: relative;
   overflow: hidden;
 
@@ -64,5 +59,9 @@ export default {
     margin-top: -1px;
     background-color: #fff;
   }
+}
+.md-tabs-navigation-scroll-container {
+  height: 47px !important;
+  display: flex;
 }
 </style>

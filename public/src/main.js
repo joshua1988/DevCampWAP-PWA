@@ -12,6 +12,14 @@ Vue.use(VueRouter);
 Vue.use(VueMaterial);
 Vue.use(VueResource);
 
+Vue.material.registerTheme('default', {
+  primary: 'blue',
+  accent: 'red',
+  warn: 'red',
+  background: 'white',
+  black: 'black'
+})
+
 const router = new VueRouter({
   routes,
   // get rid of #

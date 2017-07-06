@@ -19,7 +19,7 @@
     <md-sidenav class="md-left" ref="leftSidenav">
       <md-toolbar>
         <div class="md-toolbar-container">
-          <h3 class="md-title">Sidenav content</h3>
+          <h3 class="md-title side-nav-title">Sidenav content</h3>
         </div>
       </md-toolbar>
       <md-list>
@@ -29,9 +29,7 @@
         <md-list-item>
           <router-link to="/logs" v-on:click.native="toggleLeftSidenav">Statistic</router-link>
         </md-list-item>
-        <md-list-item>
-          <router-link to="/">To Login</router-link>
-        </md-list-item>
+        <md-list-item @click.native="signOut">Logout</md-list-item>
         <!-- <md-list-item>Plain Text</md-list-item>
         <md-list-item target="_blank" href="https://google.com">Link</md-list-item>
         <md-list-item @click.native="openAlert">Button</md-list-item> -->
@@ -70,6 +68,9 @@
 </script>
 
 <style lang="css">
+.side-nav-title {
+  color: black;
+}
 .md-toolbar {
   background-color: transparent !important;
 }
