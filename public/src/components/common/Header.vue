@@ -3,16 +3,16 @@
     <!-- header on the top -->
     <md-toolbar>
       <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
-        <md-icon>menu</md-icon>
+        <span class="nav-icon icon-menu"></span>
       </md-button>
       <h2 class="md-title">PWAir</h2>
       <span style="flex: 1"></span>
       <md-button class="md-icon-button" v-on:click.native="refreshData">
-        <md-icon>refresh</md-icon>
+        <span class="nav-icon icon-refresh2"></span>
       </md-button>
-      <md-button class="md-icon-button" v-on:click.native="signOut">
+      <!-- <md-button class="md-icon-button" v-on:click.native="signOut">
         <md-icon>exit_to_app</md-icon>
-      </md-button>
+      </md-button> -->
     </md-toolbar>
 
     <!-- side navbar -->
@@ -72,5 +72,8 @@
 <style lang="css">
 .md-toolbar {
   background-color: transparent !important;
+}
+.nav-icon {
+  font-size: 1.6rem;
 }
 </style>

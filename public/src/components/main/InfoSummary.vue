@@ -12,7 +12,7 @@
       </div>
       <div class="d-w-info">
         <span class="current-title">오존</span>
-        <span class="current-icon icon-astonished-face"></span>
+        <span class="current-icon icon-angry-face-teeth"></span>
         <span class="current-status">나쁨</span>
         <span>{{AirInfo.O3}}ppm</span>
       </div>
