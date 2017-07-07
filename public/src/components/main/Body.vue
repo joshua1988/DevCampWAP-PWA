@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="current-air-container">
     <section v-if="geoLocation.currentDistrict" class="air-status-section">
-      <span class="main-icon icon-angry-face-teeth"></span>
+      <span class="main-icon" v-bind:class="airStatusIcon"></span>
       <div class="main-status-score">{{AirInfo.IDEX_MVL}}</div>
       <div class="main-status-text">{{AirInfo.MSRSTE_NM}}의 대기는 지금 {{AirInfo.IDEX_NM}}!</div>
       <div class="main-status-date">기준 : {{AirInfo.MSRDT}}</div>
@@ -29,6 +29,15 @@ export default {
   data () {
     return {
       items: null
+    }
+  },
+  computed: {
+    airStatusIcon: function () {
+      return {
+        'icon-laughing-face': this.AirInfo.IDEX_NM == '좋음',
+        'icon-face-open-mouth-eyebrows': this.AirInfo.IDEX_NM == '보통',
+        'icon-angry-face-teeth': this.AirInfo.IDEX_NM == '나쁨'
+      }
     }
   },
   methods: {
