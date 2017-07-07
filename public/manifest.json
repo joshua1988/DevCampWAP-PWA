@@ -1,6 +1,6 @@
 {
-  "short_name": "PueWA-v1",
-  "name": "Simple PWA with Vue.js",
+  "short_name": "PWAir",
+  "name": "Forecasting Air Status with Push alarm",
   "icons": [
     {
       "src": "src/assets/images/logo-48.png",

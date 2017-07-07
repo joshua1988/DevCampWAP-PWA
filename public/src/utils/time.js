@@ -1,4 +1,4 @@
-// Get today's date in yymmhh format
+// Date Format : yymmhh
 export function getCurrentDate() {
   var date = new Date();
   return date.toISOString().slice(0,10).replace(/-/g,"");
