@@ -10,9 +10,6 @@
       <md-button class="md-icon-button" v-on:click.native="refreshData">
         <span class="nav-icon icon-refresh2"></span>
       </md-button>
-      <!-- <md-button class="md-icon-button" v-on:click.native="signOut">
-        <md-icon>exit_to_app</md-icon>
-      </md-button> -->
     </md-toolbar>
 
     <!-- side navbar -->
@@ -30,6 +27,8 @@
           <router-link to="/logs" v-on:click.native="toggleLeftSidenav">Statistic</router-link>
         </md-list-item>
         <md-list-item @click.native="signOut">Logout</md-list-item>
+        <PushSwitch></PushSwitch>
+
         <!-- <md-list-item>Plain Text</md-list-item>
         <md-list-item target="_blank" href="https://google.com">Link</md-list-item>
         <md-list-item @click.native="openAlert">Button</md-list-item> -->
@@ -39,6 +38,7 @@
 </template>
 
 <script>
+  import PushSwitch from './PushSwitch.vue'
   import { eventBus } from '../../main';
 
   export default {
@@ -63,6 +63,9 @@
           console.log("error : ", error);
         });
       }
+    },
+    components: {
+      PushSwitch: PushSwitch
     }
   }
 </script>

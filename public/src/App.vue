@@ -53,7 +53,7 @@ export default {
         this.geoLocation.currentLocation = position.coords;
         this.geoLocation.currentLocationLon = position.coords.longitude;
         this.geoLocation.currentLocationLat = position.coords.latitude;
-        this.geoToDistrictName(position.coords.latitude, position.coords.longitude);
+        this.geoInfoToDistrictName(position.coords.latitude, position.coords.longitude);
       }.bind(this), function (error) { // getCurrentPosition 비동기 실행 결과 값을 컴포넌트에 매핑
         console.log('Error occurred. Error code: ' + error.code);
         switch (error.code) {
@@ -75,7 +75,7 @@ export default {
       }, { maximumAge: 5 * 60 * 1000 });
     },
     // naver from coord to address -- https://navermaps.github.io/maps.js/docs/tutorial-3-geocoder-geocoding.example.html
-    geoToDistrictName(lat, lng) {
+    geoInfoToDistrictName(lat, lng) {
       var self = this;
       naver.maps.Service.reverseGeocode({
         // 역삼역 고정값
@@ -109,11 +109,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  /* 나쁨: #FA4659 보통: #ffa020, 좋음: #53dcbf */
-  /*#app {
-    background: #FA4659;
-    height: 100%;
-  }*/
-</style>

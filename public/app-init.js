@@ -9,11 +9,17 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// For Service Worker Push
+var isSubscribed = false;
+var swRegistration = null;
+
 // Service Worker Registration
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('sw.js').then(function(registration) {
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    navigator.serviceWorker.register('sw.js').then(function(swReg) {
+      console.log('ServiceWorker registration successful with scope: ', swReg.scope);
+
+      swRegistration = swReg;
     }).catch(function(err) {
       console.log('ServiceWorker registration failed: ', err);
     });

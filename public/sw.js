@@ -1,5 +1,6 @@
-var CACHE_NAME = 'pwair-v1.0';
-var urlsToCache = [
+importScripts('src/vendor/sw-toolbox.js');
+
+const precacheFiles = [
   './',
   // CSS
   './src/css/font.css',
@@ -28,29 +29,5 @@ var urlsToCache = [
   './src/utils/mock-airstatus.json'
 ];
 
-self.addEventListener('install', function(event) {
-  console.log('Service Worker installing.');
-
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function (cache) {
-        console.log('cache created');
-        return cache.addAll(urlsToCache);
-      }).catch(function (err) {
-        console.error('cache created error!', err);
-      })
-  );
-});
-
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
-  );
-});
+// Precache the files
+toolbox.precache(precacheFiles);
