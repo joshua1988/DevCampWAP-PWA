@@ -29,10 +29,12 @@ export default {
       })
       .then(function(subscription) {
         console.log('User is subscribed:', subscription);
+        console.log(firebase.auth().currentUser);
         var userEmail = firebase.auth().currentUser.email;
+        var uid = firebase.auth().currentUser.uid;
 
         isSubscribed = true;
-        updateSubscriptionOnServer(userEmail, subscription, isSubscribed);
+        updateSubscriptionOnServer(userEmail, subscription, uid, isSubscribed);
 
         self.updateSwitchText('push is on');
       })
@@ -47,9 +49,10 @@ export default {
         subscription.unsubscribe().then(function(successful) {
           console.log('Unsubscribed subscription : ', subscription);
           var userEmail = firebase.auth().currentUser.email;
+          var uid = firebase.auth().currentUser.uid;
 
           isSubscribed = false;
-          updateSubscriptionOnServer(userEmail, subscription, isSubscribed);
+          updateSubscriptionOnServer(userEmail, subscription, uid, isSubscribed);
 
           self.updateSwitchText('push is off');
         }).catch(function(e) {
