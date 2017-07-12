@@ -31,3 +31,27 @@ const precacheFiles = [
 
 // Precache the files
 toolbox.precache(precacheFiles);
+
+// Push Notification
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push Received.');
+
+  var title = 'PWAir';
+  var options = {
+    body: 'Yay it works.',
+    icon: 'src/assets/images/logo-192.png',
+    badge: 'src/assets/images/logo-96.png'
+  };
+
+  var notificationPromise = self.registration.showNotification(title, options);
+  event.waitUntil(notificationPromise);
+});
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('[Service Worker] Notification click Received.');
+
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow('http://www.fastcampus.co.kr/dev_camp_wap/')
+  );
+});
