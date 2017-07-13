@@ -12,5 +12,5 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 
 // Send all the messages to registered devices using FCM & Firebase DB
 exports.sendPushMessages = functions.https.onRequest((request, response) => {
-  
+
 });
