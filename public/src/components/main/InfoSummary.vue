@@ -1,10 +1,7 @@
 <template>
-  <!-- s-w-info : section-weather-info -->
   <section class="weather-info-section">
-    <!-- d-w-info : div-weather-info -->
     <div class="weather-info-container">
       <div class="d-w-info">
-        <!-- sp-w-elements : span-weather-elements -->
         <span class="current-title">미세먼지</span>
         <span class="current-icon icon-laughing-face"></span>
         <span class="current-status">좋음</span>

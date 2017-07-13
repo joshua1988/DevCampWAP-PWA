@@ -60,7 +60,6 @@ export default {
 
       console.log(url);
       return this.$http.get(url).then(function (result) {
-        // console.log(result);
         if (result.body.RealtimeCityAir.RESULT.CODE == "INFO-000") {
           const airData = result.body.RealtimeCityAir.row[21];
           console.log("the data was well received");
@@ -99,7 +98,7 @@ export default {
   },
   created() {
     // Get weather info from Seoul Weather Center
-    // this.fetchData();
+    this.fetchData();
 
     // eventClick passed from a different component (Header)
     var self = this;
